@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+## Smart Contract for Health Insurance
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a smart contract for a health insurance policy that operates on blockchain. The contract defines a `Policy` struct, which stores information about the policy holder, their health condition, the time of purchase, whether a claim has been made, the reason for the claim, and the expiration time of the policy.
 
-## Available Scripts
+### Policy Struct
 
-In the project directory, you can run:
+The `Policy` struct has the following fields:
 
-### `npm start`
+-   `name` (string): the name of the policy holder
+-   `email` (string): the email address of the policy holder
+-   `healthCondition` (string): the health condition of the policy holder
+-   `purchaseTime` (uint256): the time of purchase, as a Unix timestamp
+-   `claimTime` (uint256): the time of the claim, as a Unix timestamp
+-   `isClaimed` (bool): whether a claim has been made on the policy
+-   `claimReason` (string): the reason for the claim
+-   `expiryTime` (uint256): the time at which the policy expires, as a Unix timestamp
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Constants
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The contract has two constants:
 
-### `npm test`
+-   `premiumAmount` (uint256): the amount required to purchase a policy, set to 10 wei
+-   `policyDuration` (uint256): the duration of the policy in days, set to 365 days
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Mapping
 
-### `npm run build`
+The contract uses a mapping to store policies, with the keys being Ethereum addresses and the values being `Policy` structs:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    mapping (address => Policy) private policies;
+    
+### Eligible Claim Reasons
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The contract has an array called `eligibleClaimReasons`, which lists the reasons for which a claim can be made:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    string[] eligibleClaimReasons = ["Accident", "Cancer", "Pneumonia", "Heart attack", "Kidney failure"];
 
-### `npm run eject`
+### Functions
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The contract has three main functions:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### `buyPolicy`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Allows a user to purchase a policy by paying the `premiumAmount` of 10 wei and providing their name, email, and health condition. The function creates a new `Policy` struct with the provided information and assigns it to the sender's address in the `policies` mapping.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### `getPolicyDetails` Function
 
-## Learn More
+This function returns the policy details of the caller in a tuple. If no policy is found for the caller's address, a `require` statement will prevent the function from executing. The remaining number of days until the policy expires is also calculated and returned.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### `claimPolicy` Function
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This function allows a user to make a claim on their health insurance policy. The function first checks that a policy exists for the caller's address, that the policy has not already been claimed, and that the policy has not expired. It then checks if the claim reason provided is eligible by checking it against the `eligibleClaimReasons` array. If the claim reason is eligible, the policy is marked as claimed and the claim time and reason are set. The `premiumAmount` is then transferred back to the caller's address.
 
-### Code Splitting
+### Additional Elements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### `Policy` Struct
 
-### Analyzing the Bundle Size
+This struct defines the properties of a health insurance policy, including the name and email of the policy holder, their health condition, the time the policy was purchased, the time the policy was claimed (if applicable), whether the policy has been claimed, the reason for the claim (if applicable), and the time the policy expires.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### `eligibleClaimReasons` Array
 
-### Making a Progressive Web App
+This array contains a list of eligible claim reasons for a health insurance policy. When a user attempts to make a claim, their provided reason will be checked against this list to determine if it is eligible.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### `premiumAmount` and `policyDuration` Constants
 
-### Advanced Configuration
+These constants define the cost of a policy premium and the duration of a policy, respectively.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### `mapping (address => Policy) private policies` Mapping
 
-### Deployment
+This mapping associates an address with a `Policy` struct, allowing the contract to retrieve a user's policy details by their address.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+#### `uint256` Data Type
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This data type is used throughout the contract to represent unsigned 256-bit integers.
