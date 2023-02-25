@@ -2,6 +2,8 @@
 
 Contract Address can be found on /src/App.js
 
+Contract ABI can be found in /src/Insurance.json
+
 Contract is deployed on Obscuro testnet.
 
 This is a smart contract for a health insurance policy that operates on blockchain. The contract defines a `Policy` struct, which stores information about the policy holder, their health condition, the time of purchase, whether a claim has been made, the reason for the claim, and the expiration time of the policy.
