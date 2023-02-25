@@ -1,0 +1,74 @@
+*{
+    background-color: rgb(17, 17, 17);
+}
+.App {
+    text-align: center;
+    padding: 20px;
+    background-color: rgb(17, 17, 17);
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .app_title {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  .account_address {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  .congratulations_message {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  .button {
+    background-color: #27f5e7;
+    color: black;
+    padding: 14px 20px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 400px;
+    font-size: 18px;
+    font-weight:bold;
+  }
+  
+  .PolicyDetails {
+    margin-top: 20px;
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: left;
+    color: white;
+  }
+  
+  .details_heading {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: white;
+  }
+  
+  .policy_details {
+    margin-bottom: 5px;
+    color: white;
+  }
+
+  .input_box {
+      background-color: white;
+      border-radius: 5px;
+      margin: 10px;;
+  }
+  
