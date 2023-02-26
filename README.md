@@ -1,6 +1,6 @@
 ## Health Insurance dApp
 
-The Health Insurance dApp is built on a blockchain-powered smart contract that offers a privacy & seamless experience for users to purchase and claim health insurance policies.
+The Health Insurance dApp is built on a blockchain-powered smart contract that offers a privacy & seamless experience for users to purchase and claim health insurance policies. Users can buy policies or claim without revealing their medical conditions to anyone. The contract will automatically process any claims with eligible medical condition & disburse the payout amount.
 
 ### Smart Contract
 
