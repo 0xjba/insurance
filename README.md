@@ -4,9 +4,9 @@ The Health Insurance dApp is built on a blockchain-powered smart contract that o
 
 ### Smart Contract
 
-Contract Address can be found on /src/App.js
+Contract Address can be found on `/src/App.js`
 
-Contract ABI can be found in /src/Insurance.json
+Contract ABI can be found in `/src/Insurance.json`
 
 Contract is deployed on Obscuro testnet.
 
