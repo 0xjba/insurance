@@ -104,7 +104,7 @@ const Insure = ({ contractAddress, contractAbi }) => {
              );
          }
 
-         if (policyBought) {
+         if (policyBought || (policyName && policyEmail && policyCondition && policyExpiry)) {
             return (
               <div className="container">
                 <h1 className="app_title">Decentralised Insurance App</h1>
@@ -148,7 +148,6 @@ const Insure = ({ contractAddress, contractAbi }) => {
                     </label>
                     <br/>
                     <button className="button" type="submit">Claim Now</button>
-                    <p className="policy_details">Please wait for few mins after clicking Claim Now</p>
                     </form>
                     )}
                     </div>
@@ -156,58 +155,6 @@ const Insure = ({ contractAddress, contractAbi }) => {
               </div>
             );
           } else {
-            if (policyName && policyEmail && policyCondition && policyExpiry) {
-              return (
-                <div className="container">
-                <h1 className="app_title">Decentralised Insurance App</h1>
-                <p className="account_address">ACCOUNT: {account}</p>
-                <p className="congratulations_message">Congratulations🥳! You have a policy</p>
-                <button className="button" onClick={handleClick}>Get Policy Details</button>
-                    {showPolicyDetails && (
-                    <div className="PolicyDetails">
-                    <p className="details_heading">Details of your policy:</p>
-                    <p className="policy_details">NAME: {policyName}</p>
-                    <p className="policy_details">EMAIL: {policyEmail}</p>
-                    <p className="policy_details">MEDICAL CONDITIONS: {policyCondition}</p>
-                    <p className="policy_details">POLICY PURCHASE TIME: {new Date(policyExpiry * 1000).toString()}</p>
-                    <p className="policy_details">POLICY CLAIMED: {policyClaimed.toString()}</p>
-                    <p className="details_heading">Claim Process:</p>
-                    {policyClaimed && <p>Claim Reason: {policyReason}</p>}
-                    {!policyClaimed && (
-                    <form className="policy_form"
-                    onSubmit={(e) => {
-                        e.preventDefault();
-                        claimPolicy(policyReason);
-                    }}
-                    >
-                    <label>
-                        Reason:
-                        <select className="input_box"
-                        value={policyReason}
-                        onChange={(e) => setPolicyReason(e.target.value)}
-                        >
-                        <option value="Anaemia">Anaemia</option>
-                        <option value="Accident">Accident</option>
-                        <option value="Cancer">Cancer</option>
-                        <option value="Pneumonia">Pneumonia</option>
-                        <option value="Heart attack">Heart attack</option>
-                        <option value="Cosmetic Procedures">Cosmetic Procedures</option>
-                        <option value="HIV">HIV</option>
-                        <option value="Common Cold">Common Cold</option>
-                        <option value="Thyroid">Thyroid</option>
-                        <option value="Malaria">Malaria</option>
-                        </select>
-                    </label>
-                    <br/>
-                    <button className="button" type="submit">Claim Now</button>
-                    <p className="policy_details">Please wait for few mins after clicking Claim Now</p>
-                    </form>
-                    )}
-                    </div>
-                    )}
-              </div>
-              );
-            } else {
               return (
                 <div className="container">
                 <h1 className="app_title">Decentralised Insurance App</h1>
@@ -247,11 +194,9 @@ const Insure = ({ contractAddress, contractAbi }) => {
                     </label>
                     <br />
                     <button className="button"type="submit">Buy Policy</button>
-                    <p className="policy_details">Please wait for few mins after clicking Buy Policy</p>
                   </form>
                 </div>
               );
-            }
           }
           
          }
