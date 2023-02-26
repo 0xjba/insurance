@@ -1,3 +1,7 @@
+##Health Insurance dApp
+
+The Health Insurance dApp is built on a blockchain-powered smart contract that offers a privacy & seamless experience for users to purchase and claim health insurance policies.
+
 ## Smart Contract for Health Insurance
 
 Contract Address can be found on /src/App.js
