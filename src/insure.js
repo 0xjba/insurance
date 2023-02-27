@@ -97,7 +97,7 @@ const Insure = ({ contractAddress, contractAbi }) => {
                         isWalletInstalled ? (
                             <button className="button" onClick={connectWallet}>Connect Wallet</button>
                         ) : (
-                            <p>Install Metamask wallet</p>
+                            <p className="warning_message">Make sure you have Metamask wallet installed & are on a supported browser</p>
                         )
                     }
                 </div>
